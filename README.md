@@ -9,6 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v5.0.0 | [`v5.0.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v5.0.0) | [`f34313d`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/f34313de00852cf9b8852f6947c344293e0aa704) |
+| v5.1.0 | [`v5.1.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v5.1.0) | [`20ace36`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/20ace36ab7eccde1d04141caa7ab754cbc280866) |
 
 ## Privacy
 
