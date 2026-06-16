@@ -1,17 +1,44 @@
-# Apple-Actions/download-provisioning-profiles
+# GitHub Action to download and install Provisioning Profiles
 
-Downloads an Apple Provisioning Profiles from the AppStore Connect API
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](LICENSE)
+[![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/Apple-Actions/download-provisioning-profiles](https://github.com/Apple-Actions/download-provisioning-profiles).
+## Usage:
 
-## Versions
+```yaml
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - name: 'Download Provisioning Profiles'
+      id: provisioning
+      uses: apple-actions/download-provisioning-profiles@v1
+      with: 
+        bundle-id: 'com.example.App'
+        profile-type: 'IOS_APP_STORE'
+        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+  
+    - name: 'Another example step'
+      run: echo ${{ steps.provisioning.outputs.profiles }}
+```
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v4.0.1 | [`v4.0.1`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v4.0.1) | [`7fa56f7`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/7fa56f793274ba880be33b875dae5fe62519bc11) |
-| v5.0.0 | [`v5.0.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v5.0.0) | [`f34313d`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/f34313de00852cf9b8852f6947c344293e0aa704) |
-| v5.1.0 | [`v5.1.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v5.1.0) | [`20ace36`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/20ace36ab7eccde1d04141caa7ab754cbc280866) |
-| v6.0.0 | [`v6.0.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v6.0.0) | [`c62019d`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/c62019de00bb4395ed414e4a17c98f4e279636de) |
+## Additional Arguments
+
+See [action.yml](action.yml) for more details.
+
+## Outputs
+
+The action outputs an array of JSON objects to the action output named `profiles`.  You can access and manipulate this data using [workflow expressions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#steps-context).
+
+## Contributing
+
+We welcome your interest in contributing to this project. Please read the [Contribution Guidelines](CONTRIBUTING.md) for more guidance.
+
+## License
+
+Any contributions made under this project will be governed by the [MIT License](LICENSE).
 
 ## Privacy
 
