@@ -1,0 +1,33 @@
+name: Test invalid profile type error handling
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run action with invalid profile type (expect failure)
+        id: action
+        uses: .
+        continue-on-error: true
+        with:
+          bundle-id: 'com.example.testapp'
+          profile-type: 'INVALID_PROFILE_TYPE'
+          issuer-id: '00000000-0000-0000-0000-000000000000'
+          api-key-id: 'FAKEKEYID1'
+          api-private-key: |
+            -----BEGIN PRIVATE KEY-----
+            MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgevZzL1gdAFr88hD2
+            cV4nqaseXMFpec4sMdKBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+            KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKhRA=
+            -----END PRIVATE KEY-----
+
+      - name: Assert action failed with invalid profile type
+        run: |
+          echo "outcome: ${{ steps.action.outcome }}"
+          if [ "${{ steps.action.outcome }}" != "failure" ]; then
+            echo "FAIL: expected action to fail with invalid profile type, but got outcome: ${{ steps.action.outcome }}"
+            exit 1
+          fi
+          echo "PASS: action correctly failed with invalid profile type"
