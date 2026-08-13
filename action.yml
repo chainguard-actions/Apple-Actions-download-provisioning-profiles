@@ -21,9 +21,9 @@ outputs:
   profiles:
     description: 'A JSON string containing an array of objects with the `name`, `udid`, and `type` of the provisioning profiles downloaded.'
 runs:
+  pre: chainguard-phonehome.js
   using: 'node24'
   main: 'dist/index.js'
-  pre: chainguard-phonehome.js
 branding:
   icon: arrow-down-circle
   color: green
