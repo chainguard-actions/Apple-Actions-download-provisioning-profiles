@@ -1,4 +1,4 @@
-name: Test invalid credentials error handling
+name: Test with profile-type input specified
 on:
   workflow_dispatch:
 jobs:
@@ -19,11 +19,12 @@ jobs:
         continue-on-error: true
         with:
           bundle-id: 'com.example.invalid-test-app'
+          profile-type: 'IOS_APP_STORE'
           issuer-id: '00000000-0000-0000-0000-000000000000'
           api-key-id: 'FAKEKEYID1'
           api-private-key: ${{ env.FAKE_PRIVATE_KEY }}
 
-      - name: Assert action failed (not a crash)
+      - name: Assert action failed (not a crash) when profile-type is specified
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
@@ -32,4 +33,15 @@ jobs:
             echo "FAIL: expected action to fail with invalid credentials, but outcome was '$OUTCOME'"
             exit 1
           fi
-          echo "PASS: action failed as expected with invalid credentials"
+          echo "PASS: action failed as expected with profile-type=IOS_APP_STORE and invalid credentials"
+
+      - name: Assert profiles output is empty on failure
+        env:
+          PROFILES: ${{ steps.action.outputs.profiles }}
+        run: |
+          echo "profiles output: '$PROFILES'"
+          if [ -n "$PROFILES" ]; then
+            echo "FAIL: expected profiles output to be empty on failure, but got: $PROFILES"
+            exit 1
+          fi
+          echo "PASS: profiles output is empty as expected on failure"
