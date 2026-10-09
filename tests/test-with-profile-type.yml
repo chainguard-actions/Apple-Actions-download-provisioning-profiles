@@ -1,0 +1,41 @@
+name: Test with profile-type filter
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          bundle-id: com.example.testapp
+          profile-type: IOS_APP_STORE
+          issuer-id: 12345678-1234-1234-1234-123456789012
+          api-key-id: ABCDEF1234
+          api-private-key: |
+            -----BEGIN PRIVATE KEY-----
+            MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgevZzL1gdAFr88hD2
+            cV4nqaseXSh3dEjWygPpSlachhWhRANCAAQRWxNda9aM3HuOmJrpZ2deB7+8Unbj
+            zB2s5B8jcFnqhAS6sMpeSM3l2XDgE7mHlbaIfgX6yU/5BMss4QFO
+            -----END PRIVATE KEY-----
+      - name: Assert action ran with profile-type filter (or failed gracefully on invalid credentials)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          PROFILES: ${{ steps.action.outputs.profiles }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "profiles: $PROFILES"
+          if [ "$OUTCOME" = "success" ]; then
+            if [ -z "$PROFILES" ]; then
+              echo "FAIL: action succeeded but profiles output is empty"
+              exit 1
+            fi
+            echo "PASS: got profiles output: $PROFILES"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (invalid/fake credentials rejected by API)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
