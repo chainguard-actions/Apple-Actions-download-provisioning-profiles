@@ -14,6 +14,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v5.1.0 | [`v5.1.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v5.1.0) | [`20ace36`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/20ace36ab7eccde1d04141caa7ab754cbc280866) |
 | v6.0.0 | [`v6.0.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v6.0.0) | [`c62019d`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/c62019de00bb4395ed414e4a17c98f4e279636de) |
 | v6.1.0 | [`v6.1.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v6.1.0) | [`2126b5f`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/2126b5f86a0e2863cbf4d2d312112b22b943a594) |
+| v7.0.0 | [`v7.0.0`](https://github.com/chainguard-actions/Apple-Actions-download-provisioning-profiles/tree/v7.0.0) | [`230860a`](https://github.com/Apple-Actions/download-provisioning-profiles/commit/230860ab5f632551a5f9a5e1d98a774485463888) |
 
 ## Privacy
 
