@@ -4,8 +4,13 @@
   "version": "v6.1.0",
   "commit_sha": "2126b5f86a0e2863cbf4d2d312112b22b943a594",
   "url": "https://github.com/Apple-Actions/download-provisioning-profiles",
-  "policy_sha": "d636be7e43ef829af6e853da6b3c7566db9f72fe",
+  "policy_sha": "374911c4be584df24e6da57af2d990570ef0f859",
   "test_policy_sha": "843adf9e4b8f85d0c08b27b9d0b09dd094b54702",
   "test_agent_version": "2",
-  "harden_agent_version": "2"
+  "harden_agent_version": "2",
+  "dist_artifact": {
+    "gcs_uri": "gs://patch-actions-node-artifacts/dist-artifacts/Apple-Actions/download-provisioning-profiles/v6.1.0/sha256-2c575da314cedcfc9ab4024ed55a961a2ece8fb9add2f76a2549df1c554d8742.tar.gz",
+    "sha256": "2c575da314cedcfc9ab4024ed55a961a2ece8fb9add2f76a2549df1c554d8742",
+    "size_bytes": 393136
+  }
 }
